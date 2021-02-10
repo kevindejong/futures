@@ -104,7 +104,6 @@ func (s *streamReader) Clone() Stream {
 	clone := &streamReader{
 		streamTracker: s.streamTracker,
 		items:         s.items,
-		closed:        s.closed,
 	}
 	s.readers[clone] = struct{}{}
 	s.Unlock()

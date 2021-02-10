@@ -401,3 +401,17 @@ func TestStreamCloseAferCloneErr(t *testing.T) {
 	require.EqualError(t, err, expectedErr.Error())
 	require.Equal(t, nil, cloneItem)
 }
+
+func TestStreamCloneAfterClose(t *testing.T) {
+	stream, sendFunc := NewStream()
+	stream.Close()
+	clone := stream.Clone()
+	expected := "TestStreamCloseClone"
+	sendFunc(expected, nil)
+	nextItem, err := stream.Next()
+	require.EqualError(t, err, ErrStreamClosed.Error())
+	require.Equal(t, nil, nextItem)
+	cloneItem, err := clone.Next()
+	require.NoError(t, err)
+	require.Equal(t, expected, cloneItem)
+}
