@@ -17,7 +17,7 @@ fmt.Print(result, " ", err) // future completed! <nil>
 
 ### Stream
 
-A stream abstracts a channel with idempotent error handling and cloning for broadcast.
+A stream is an unbounded channel with idempotent error handling and cloning for broadcast.
 
 ```
 stream, sendFunc := futures.NewStream()

@@ -8,7 +8,7 @@ import (
 // ErrStreamClosed is returned by Stream.Next when the stream has been closed
 var ErrStreamClosed = errors.New("stream closed")
 
-// Stream abstracts a channel with idempotent error handling and cloning for broadcast
+// Stream is an unbounded channel with idempotent error handling and cloning for broadcast
 type Stream interface {
 	Pending() <-chan struct{}
 	Next() (interface{}, error)
